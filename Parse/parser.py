@@ -13,8 +13,8 @@ class Parser:
         for era in os.listdir(path):
             if(not isfile(era)):
                 self.images += self.get_images(path,era)
-        print self.images[0]
-        # self.load_images_into_tensor_array(self.images)
+        #print self.images[0]
+        self.load_images_into_tensor_array(self.images)
 
     def get_images(self,path,era):
         """
@@ -36,7 +36,7 @@ class Parser:
         """
         Return two arrays, first is array of TF image records, second is corresponding labels
         """
-        image_files = [imge for image, _ in image_location_tuple_list]
+        image_files = [image for image, _ in image_location_tuple_list]
         tf_queue = tf.train.string_input_producer(image_files)
         reader = tf.WholeFileReader()
         key, value = reader.read(tf_queue)
