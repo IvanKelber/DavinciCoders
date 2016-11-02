@@ -12,23 +12,25 @@ class Parser:
         self.images = []
         for era in os.listdir(path):
             if(not isfile(era)):
-                self.images += self.get_images(join(path,era))
-        print self.images
-        self.load_images_into_tensor_array(self.images)
+                self.images += self.get_images(path,era)
+        print self.images[0]
+        # self.load_images_into_tensor_array(self.images)
 
-    def get_images(self,era):
+    def get_images(self,path,era):
         """
         Returns all of the images associated with that era in a list of tuples of form:
         (image_filename,path_to_era)
         """
-        artists = [artist for artist in os.listdir(era) if not isfile(join(era,artist))]
+        artists = [artist for artist in os.listdir(join(path,era)) if not isfile(join(path,era,artist))]
         images = []
         for artist in artists:
-            images += [(image,era) for image in os.listdir(join(era,artist))]
+            images += [(join(path,era,artist,image),era) for image in os.listdir(join(path,era,artist))]
         return images
 
-    def parse_image(image):
-        pass
+    def parse_jpg(jpg):
+        return tf.image.decode_jpeg(jpg,channels=3,ratio=8)
+
+
 
     def load_images_into_tensor_array(self, image_location_tuple_list, dimension=DIMENSION):
         """
