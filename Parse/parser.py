@@ -27,8 +27,10 @@ class Parser:
             images += [(image,era) for image in os.listdir(join(era,artist))]
         return images
 
-    def parse_image(image):
-        pass
+    def parse_jpg(jpg):
+        return tf.image.decode_jpeg(jpg,channels=3,ratio=8)
+
+
 
     def load_images_into_tensor_array(image_location_tuple_list, dimension=DIMENSION):
         """
