@@ -15,13 +15,18 @@ class Parser:
                 self.images += self.get_images(join(path,era))
 
         print len(self.images)
-        
+
     def get_images(self,era):
+        """
+        Returns all of the images associated with that era in a list of tuples of form:
+        (image_filename,path_to_era)
+        """
         artists = [artist for artist in os.listdir(era) if not isfile(join(era,artist))]
         images = []
         for artist in artists:
             images += [(image,era) for image in os.listdir(join(era,artist))]
         return images
+
     def parse_image(image):
         pass
 
@@ -30,7 +35,7 @@ class Parser:
         Return two arrays, first is array of TF image records, second is corresponding labels
         """
         for img, location in image_location_tuple_list:
-            
+
 
 
 def main():
