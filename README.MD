@@ -15,3 +15,11 @@ DRAW
 
 Dataset:
 http://imag.pub.ro/pandora/pandora_download.html
+
+Specific Data Information:
+
+In each folder for type of art there are the various artists.  In each artist there
+are the various paintings of that artist.  The only exception is "Abstract_Art"
+which has subtypes of abstract art.  To make our lives easier just take the artists
+from each subtype and move them to the main "Abstract_Art" folder.  Some artists
+are in more than one subtype so you'll need to merge their paintings.
