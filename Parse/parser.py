@@ -17,11 +17,16 @@ class Parser:
         self.load_images_into_tensor_array(self.images)
 
     def get_images(self,era):
+        """
+        Returns all of the images associated with that era in a list of tuples of form:
+        (image_filename,path_to_era)
+        """
         artists = [artist for artist in os.listdir(era) if not isfile(join(era,artist))]
         images = []
         for artist in artists:
             images += [(image,era) for image in os.listdir(join(era,artist))]
         return images
+
     def parse_image(image):
         pass
 
