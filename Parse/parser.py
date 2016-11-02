@@ -34,7 +34,7 @@ class Parser:
         """
         Return two arrays, first is array of TF image records, second is corresponding labels
         """
-        image_files = [join(image_path,image) for image, image_path in image_location_tuple_list]
+        image_files = [imge for image, _ in image_location_tuple_list]
         tf_queue = tf.train.string_input_producer(image_files)
         reader = tf.WholeFileReader()
         key, value = reader.read(tf_queue)
