@@ -9,10 +9,13 @@ DIMENSION = 64
 class Parser:
 
     def __init__(self,path):
+        self.images = []
+        for era in os.listdir(path):
+            if(not isfile(era)):
+                self.images += self.get_images(join(path,era))
 
-        print self.get_images(path)
-
-
+        print len(self.images)
+        
     def get_images(self,era):
         artists = [artist for artist in os.listdir(era) if not isfile(join(era,artist))]
         images = []
@@ -31,7 +34,7 @@ class Parser:
 
 
 def main():
-    p = Parser("Data/Pandora_18k/05_Baroque")
+    p = Parser("Data/Pandora_18k/")
 
 
 if __name__ == '__main__':
