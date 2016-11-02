@@ -36,12 +36,14 @@ class Parser:
         """
         Return two arrays, first is array of TF image records, second is corresponding labels
         """
+        print len(image_location_tuple_list)
         image_files = [image for image, _ in image_location_tuple_list]
+        print len(image_files)
         tf_queue = tf.train.string_input_producer(image_files)
         reader = tf.WholeFileReader()
         key, value = reader.read(tf_queue)
 
-        out_image = tf.image.decode_jpeg(value)
+        out_image = tf.image.resize_image_with_crop_or_pad(tf.image.decode_jpeg(value), DIMENSION, DIMENSION)
 
         sess = tf.Session()
         sess.as_default()
