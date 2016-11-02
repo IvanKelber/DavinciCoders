@@ -22,6 +22,14 @@ class Parser:
     def parse_image(image):
         pass
 
+    def load_images_into_tensor_array(image_location_tuple_list, dimension=DIMENSION):
+        """
+        Return two arrays, first is array of TF image records, second is corresponding labels
+        """
+        for img, location in image_location_tuple_list:
+            
+
+
 def main():
     p = Parser("Data/Pandora_18k/05_Baroque")
 
