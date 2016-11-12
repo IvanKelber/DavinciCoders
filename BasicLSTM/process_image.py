@@ -1,8 +1,6 @@
 #!/usr/bin/python
 import PIL.Image as Image
-from collections import Counter
 import numpy as np
-import re
 
 class ProcessedImage():
 
