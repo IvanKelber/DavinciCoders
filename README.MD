@@ -12,6 +12,7 @@ Relevant Papers:
 
 DeepDream
 DRAW
+Pixel Recurrent Neural Networks - https://arxiv.org/pdf/1601.06759v3
 
 Dataset:
 http://imag.pub.ro/pandora/pandora_download.html
@@ -23,3 +24,13 @@ are the various paintings of that artist.  The only exception is "Abstract_Art"
 which has subtypes of abstract art.  To make our lives easier just take the artists
 from each subtype and move them to the main "Abstract_Art" folder.  Some artists
 are in more than one subtype so you'll need to merge their paintings.
+
+Basic LSTM:
+Takes an image, trains on 90%, tests on 10%, outputs an image based on test data.
+Dependencies: (needs to be formalized)
+Tensorflow
+PIL
+Numpy
+Sys
+To run:
+python main.py <image-to-train> 
