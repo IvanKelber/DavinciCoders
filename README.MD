@@ -1,8 +1,12 @@
 Members:
 Josh Cusano
+
 Ivan Kelber
+
 Shreyas Sundararaman
+
 Jeremy Watson
+
 Ashley Conard
 
 Idea:
