@@ -38,10 +38,8 @@ class StringsToImage():
 
 	@staticmethod
 	def string_pixel_to_image(list_of_pixelstr, width):
-		#print list_of_pixelstr, width
 		num_full_rows = len(list_of_pixelstr) / width
 		offset = len(list_of_pixelstr) - (num_full_rows * width)
-		#print width, num_full_rows
 		imgfinal = Image.new("RGB", ((width, num_full_rows)))
 		imgfinal.putdata(list_of_pixelstr[offset:])
 		imgfinal.save('testfinal.png')
