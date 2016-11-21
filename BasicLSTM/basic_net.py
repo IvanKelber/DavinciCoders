@@ -2,11 +2,12 @@
 import tensorflow as tf
 import numpy as np
 
-class BasicLSTMNet():
+class LSTMNet():
 
 	#weights and biases are class scope, not instance scope.
 	w1 = None
 	b1 = None
+	init_state = None
 
 	def __init__(self, net_name, vocab_size, k_prob, e_size, hsize, num_steps, batch_size, epochs=None):
 		self.k_prob = k_prob
@@ -27,7 +28,7 @@ class BasicLSTMNet():
 			embeddings = tf.Variable(tf.random_uniform([self.vocab_size, self.e_size], -.1, .1), name="embeddings")
 			embedding_layer = tf.nn.embedding_lookup(embeddings, self.inputs)
 			embedding_layer = tf.nn.dropout(embedding_layer, self.k_prob)
-			self.b_cell = tf.nn.rnn_cell.BasicLSTMCell(self.hsize, state_is_tuple=True)
+			self.b_cell = tf.nn.rnn_cell.LSTMCell(self.hsize, use_peepholes=True)
 			self.init_state = self.b_cell.zero_state(self.batch_size, tf.float32)
 			#this is not the best way to do this
 			if self.__class__.w1 == None and self.__class__.b1 == None:
@@ -35,7 +36,7 @@ class BasicLSTMNet():
 				self.__class__.b1 = tf.Variable(tf.random_uniform([self.vocab_size], -.1, .1))
 			outputs, self.f_state = tf.nn.dynamic_rnn(self.b_cell, embedding_layer, initial_state=self.init_state)
 			outputs = tf.reshape(outputs, [(self.batch_size * self.num_steps), self.hsize])
-			logits = tf.matmul(outputs, self.w1) + self.b1
+			logits = tf.matmul(outputs, self.__class__.w1) + self.__class__.b1
 			self.prediction = logits
 			useless_weights = tf.ones([self.batch_size * self.num_steps])
 			self.error = tf.reduce_sum(tf.nn.seq2seq.sequence_loss_by_example([logits], [tf.reshape(self.labels, [self.batch_size*self.num_steps])], [useless_weights]))
@@ -43,7 +44,7 @@ class BasicLSTMNet():
 			self.train_step = tf.train.AdamOptimizer(.0001).minimize(self.error)
 			self.sess = tf.Session()
 			self.sess.run(tf.initialize_all_variables())
-			print "Basic LSTM net initialized"
+			print "LSTM net initialized"
 
 class RunNet():
 
