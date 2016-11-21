@@ -7,7 +7,6 @@ class LSTMNet():
 	#weights and biases are class scope, not instance scope.
 	w1 = None
 	b1 = None
-	init_state = None
 
 	def __init__(self, net_name, vocab_size, k_prob, e_size, hsize, num_steps, batch_size, epochs=None):
 		self.k_prob = k_prob
