@@ -19,11 +19,11 @@ tf.flags.DEFINE_boolean("read_attn", True, "enable attention for reader")
 tf.flags.DEFINE_boolean("write_attn",True, "enable attention for writer")
 FLAGS = tf.flags.FLAGS
 
-p = Parser("/gpfs/main/home/jcusano/course/cs2950k/draw/cifar-img/batches/data_batch_1", True)
+parser = Parser("/home/jeremy/DavinciCoders/Data/mogged_imgs", True, False)
 
 ## MODEL PARAMETERS ## 
-num_images = 1000
-A,B = 32,32 # image width,height
+num_images = 800
+A,B = 64,64 # image width,height
 img_size = B*A # the canvas size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
@@ -227,7 +227,7 @@ for i in range(train_iters):
     start = 0
     end = batch_size
     while start < num_images:
-        feed_dict={x:p.final_images[start:end]}
+        feed_dict={x:parser.final_images[start:end]}
         results=sess.run(fetches,feed_dict)
         Lxs[i],Lzs[i],_=results
         start += batch_size
