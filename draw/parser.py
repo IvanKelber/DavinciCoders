@@ -5,9 +5,8 @@ from os.path import isfile, join
 import cPickle
 from PIL import Image
 
-DIMENSION = 64
 class Parser:
-    dimension = DIMENSION
+    dimension = 32
 
     def __init__(self, path, simple_images=False, cifar_flag=False):
         self.images = []
@@ -83,7 +82,7 @@ class Parser:
         imgfinal.save('testfinal.png')
         print "Test image saved to testfinal.png"
 
-    def load_images_into_tensor_array(self, image_location_tuple_list, dimension=DIMENSION):
+    def load_images_into_tensor_array(self, image_location_tuple_list):
         """
         Return two arrays, first is array of TF image records, second is corresponding labels
         """
@@ -93,7 +92,7 @@ class Parser:
         key, value = reader.read(tf_queue)
 
     
-        out_image = tf.image.rgb_to_grayscale(tf.image.resize_image_with_crop_or_pad(tf.image.decode_jpeg(value), DIMENSION, DIMENSION))
+        out_image = tf.image.rgb_to_grayscale(tf.image.resize_image_with_crop_or_pad(tf.image.decode_jpeg(value), self.dimension, self.dimension))
 
         sess = tf.Session()
         sess.as_default()
@@ -105,8 +104,6 @@ class Parser:
         tf_array = []
 
         for i in range(len(image_files)):
-
-            print image_files[i]
             curr_image = out_image.eval(session=sess)
             tf_array.append(curr_image)
 

@@ -23,7 +23,7 @@ parser = Parser("/home/jeremy/DavinciCoders/Data/mogged_imgs", True, False)
 
 ## MODEL PARAMETERS ## 
 num_images = 800
-A,B = 64,64 # image width,height
+A,B = parser.dimension, parser.dimension # image width,height
 img_size = B*A # the canvas size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
