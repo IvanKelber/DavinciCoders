@@ -92,7 +92,7 @@ class Parser:
         key, value = reader.read(tf_queue)
 
     
-        out_image = tf.image.rgb_to_grayscale(tf.image.resize_image_with_crop_or_pad(tf.image.decode_jpeg(value), self.dimension, self.dimension))
+        out_image = tf.image.rgb_to_grayscale(tf.image.resize_images(tf.image.decode_jpeg(value), [self.dimension, self.dimension]))
 
         sess = tf.Session()
         sess.as_default()
@@ -113,13 +113,12 @@ class Parser:
             img = list()
             for p in i:
                 for x in p:
-                    img.append(float(x[0])/255)
+                    img.append(float(x[0])/255.0)
             self.final_images.append(img)
         coord.request_stop()
         coord.join(threads)
 
 def main():
-    p = Parser("/gpfs/main/home/jcusano/course/cs2950k/draw/cifar-img/batches/data_batch_1", True)
-
+    p = Parser("/home/jwatson1/compbio/jeremy/DavinciCoders/Data/mogged_imgs", True)
 if __name__ == '__main__':
     main()
