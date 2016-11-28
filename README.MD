@@ -38,6 +38,13 @@ python main.py <image-to-train>
 draw:
 The author of this code is Eric Jang, https://github.com/ericjang/draw. We have made minor tweaks to work with our images.
 To run:
+code can be found at /gpfs/data/compbio/jeremy/DavinciCoders/draw
+remember to chmod -R 777 . to make sure everything can be modified by everyone
+
+kinit
+ssh cslab6a (or cslab6b or cslab6c)
+source /course/cs2950k/tf_gpu_venv/bin/activate 
 python draw.py --data_dir=. --read_attn=True --write_attn=True
+
 To construct generated images from the numpy binary:
 python plot_data.py planes draw_data.npy
