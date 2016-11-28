@@ -104,9 +104,7 @@ class Parser:
 
         tf_array = []
 
-        for i in range(len(image_files)):
-
-            print image_files[i]
+        for i in range(len(image_files)):          
             curr_image = out_image.eval(session=sess)
             tf_array.append(curr_image)
 
@@ -114,15 +112,18 @@ class Parser:
         #unpack array, scale pixels
         for i in tf_array:
             img = list()
-            for p in i:
+            for p in i:               
                 for x in p:
-                    img.append(float(p[0])/255)
+                    #print x 
+                    img.append(float(x[0]))
             self.final_images.append(img)
+       # print img
         coord.request_stop()
         coord.join(threads)
 
 def main():
-    p = Parser("/gpfs/main/home/jcusano/course/cs2950k/draw/cifar-img/batches/data_batch_1", True)
+    p = Parser("/home/jwatson1/compbio/jeremy/DavinciCoders/Data/mogged_imgs", True, False)
+    p.pixel_to_image(p.final_images[40], DIMENSION, DIMENSION)
 
 if __name__ == '__main__':
     main()

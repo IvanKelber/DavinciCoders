@@ -19,10 +19,10 @@ tf.flags.DEFINE_boolean("read_attn", True, "enable attention for reader")
 tf.flags.DEFINE_boolean("write_attn",True, "enable attention for writer")
 FLAGS = tf.flags.FLAGS
 
-parser = Parser("/home/jeremy/DavinciCoders/Data/mogged_imgs", True, False)
+parser = Parser("/gpfs/data/compbio/jeremy/DavinciCoders/Data/mogged_imgs", True, False)
 
 ## MODEL PARAMETERS ## 
-num_images = 800
+num_images = 1100
 A,B = parser.dimension, parser.dimension # image width,height
 img_size = B*A # the canvas size
 enc_size = 256 # number of hidden units / output size in LSTM

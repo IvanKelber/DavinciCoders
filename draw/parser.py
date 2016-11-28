@@ -113,7 +113,7 @@ class Parser:
             img = list()
             for p in i:
                 for x in p:
-                    img.append(float(p[0])/255)
+                    img.append(float(x[0])/255)
             self.final_images.append(img)
         coord.request_stop()
         coord.join(threads)
