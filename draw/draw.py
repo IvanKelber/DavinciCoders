@@ -18,11 +18,15 @@ tf.flags.DEFINE_string("data_dir", "", "")
 tf.flags.DEFINE_string("source_dir","","data source directory")
 tf.flags.DEFINE_boolean("read_attn", True, "enable attention for reader")
 tf.flags.DEFINE_boolean("write_attn",True, "enable attention for writer")
+tf.flags.DEFINE_integer("img_dim",32,"resolution of image")
+tf.flags.DEFINE_integer("canvasses",10,"number of output canvasses")
+tf.flags.DEFINE_integer("batch_size",100,"batch size and images per canvas")
+tf.flags.DEFINE_integer("iters",1000,"number of training iterations")
 FLAGS = tf.flags.FLAGS
 
 if(FLAGS.source_dir==""):
     os.exit(1)
-parser = Parser(FLAGS.source_dir, True, False,dimension=64)
+parser = Parser(FLAGS.source_dir, True, False,dimension=FLAGS.img_dim)
 
 ## MODEL PARAMETERS ## 
 num_images = 1100
@@ -35,9 +39,9 @@ write_n = 5 # write glimpse grid width/height
 read_size = 2*read_n*read_n if FLAGS.read_attn else 2*img_size
 write_size = write_n*write_n if FLAGS.write_attn else img_size
 z_size=10 # QSampler output size
-T=10 # MNIST generation sequence length
-batch_size=100 # training minibatch size
-train_iters=1000
+T=FLAGS.canvasses # MNIST generation sequence length
+batch_size=FLAGS.batch_size # training minibatch size
+train_iters=FLAGS.iters
 learning_rate=1e-3 # learning rate for optimizer
 eps=1e-8 # epsilon for numerical stability
 
