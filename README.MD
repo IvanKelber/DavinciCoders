@@ -25,6 +25,7 @@ which has subtypes of abstract art.  To make our lives easier just take the arti
 from each subtype and move them to the main "Abstract_Art" folder.  Some artists
 are in more than one subtype so you'll need to merge their paintings.
 
+###DEPRECATED#####
 Basic LSTM:
 Takes an image, trains on 90%, tests on 10%, outputs an image based on test data.
 Dependencies: (needs to be formalized)
@@ -35,16 +36,28 @@ Sys
 To run:
 python main.py <image-to-train> 
 
+####CURRENT-BUILD#####
 draw:
 The author of this code is Eric Jang, https://github.com/ericjang/draw. We have made minor tweaks to work with our images.
-To run:
-code can be found at /gpfs/data/compbio/jeremy/DavinciCoders/draw
-remember to chmod -R 777 . to make sure everything can be modified by everyone
 
+Setup:
 kinit
 ssh cslab6a (or cslab6b or cslab6c)
 source /course/cs2950k/tf_gpu_venv/bin/activate 
-python draw.py --data_dir=. --read_attn=True --write_attn=True
+
+Run:
+If you'd like to try a particular configuration of parameters or a particular dataset you can run
+python draw.py --data_dir=./tmp/ --source_dir=./path/to/source/ --read_attn=True --write_attn=True --img_dim=64 --batch_size=100 --iters=1000 --canvasses=10
+
+If you'd like to run several different combinations of parameters on a JUST expressionism then:
+mkdir ./script_test
+python runner.py
+
+NOTE that this requires a directory of images.  Right now it's hard coded to use 11_Expressionism/ as a source.  It also names the generated folders containing the generated images with an "exp" prefix to acknowledge the type.  A small TODO: pass in source into runner.py and name the folders accordingly.
 
 To construct generated images from the numpy binary:
 python plot_data.py planes draw_data.npy
+
+If you'd like to construct generated images from several different folders containing numpy binaries:
+python plotter.py /path/to/directory
+
