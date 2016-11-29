@@ -4,7 +4,7 @@
 Simple implementation of http://arxiv.org/pdf/1502.04623v2.pdf in TensorFlow
 
 Example Usage: 
-	python draw.py --data_dir=/tmp/draw --read_attn=True --write_attn=True
+	python draw.py --source_dir=/path/to/source/--data_dir=/tmp/draw --read_attn=True --write_attn=True
 
 Author: Eric Jang
 """
@@ -15,15 +15,18 @@ import numpy as np
 import os
 from parser import Parser
 tf.flags.DEFINE_string("data_dir", "", "")
+tf.flags.DEFINE_string("source_dir","","data source directory")
 tf.flags.DEFINE_boolean("read_attn", True, "enable attention for reader")
 tf.flags.DEFINE_boolean("write_attn",True, "enable attention for writer")
 FLAGS = tf.flags.FLAGS
 
-parser = Parser("/gpfs/data/compbio/jeremy/DavinciCoders/Data/mogged_imgs", True, False)
+if(FLAGS.source_dir==""):
+    os.exit(1)
+parser = Parser(FLAGS.source_dir, True, False,dimension=64)
 
 ## MODEL PARAMETERS ## 
 num_images = 1100
-A,B = parser.dimension, parser.dimension # image width,height
+A = B = parser.dimension # image width,height
 img_size = B*A # the canvas size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
@@ -34,7 +37,7 @@ write_size = write_n*write_n if FLAGS.write_attn else img_size
 z_size=10 # QSampler output size
 T=10 # MNIST generation sequence length
 batch_size=100 # training minibatch size
-train_iters=500
+train_iters=1000
 learning_rate=1e-3 # learning rate for optimizer
 eps=1e-8 # epsilon for numerical stability
 
@@ -158,7 +161,7 @@ h_dec_prev=tf.zeros((batch_size,dec_size))
 enc_state=lstm_enc.zero_state(batch_size, tf.float32)
 dec_state=lstm_dec.zero_state(batch_size, tf.float32)
 
-## DRAW MODEL ## 
+## DRAW MODEL ## 0
 
 # construct the unrolled computational graph
 for t in range(T):
@@ -227,11 +230,23 @@ for i in range(train_iters):
     start = 0
     end = batch_size
     while start < num_images:
-        feed_dict={x:parser.final_images[start:end]}
-        results=sess.run(fetches,feed_dict)
-        Lxs[i],Lzs[i],_=results
-        start += batch_size
-        end += batch_size
+        try:
+            feed_dict={x:parser.final_images[start:end]}
+
+            results=sess.run(fetches,feed_dict)
+            Lxs[i],Lzs[i],_=results
+            start += batch_size
+            if(len(parser.final_images) < end + batch_size):
+                end = start
+            else:
+                end = end+batch_size
+            if(end-start < batch_size):
+                # print end,start,len(parser.final_images)
+                break
+        except ValueError:
+            print "VALUE ERROR C.R.E.A.M. get da money, dolla*2 bill y'aaaallll"
+            os.exit(1)
+
     if i%100==0:
            print("iter=%d : Lx: %f Lz: %f" % (i,Lxs[i],Lzs[i]))
 

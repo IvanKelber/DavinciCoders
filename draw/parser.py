@@ -6,11 +6,11 @@ import cPickle
 from PIL import Image
 
 class Parser:
-    dimension = 32
 
-    def __init__(self, path, simple_images=False, cifar_flag=False):
+    def __init__(self, path, simple_images=False, cifar_flag=False, dimension=32):
         self.images = []
         self.final_images = []
+        self.dimension = dimension
         if cifar_flag:
             img_dict = self.unpickle(path)
             for ix, label in enumerate(img_dict['labels']):
