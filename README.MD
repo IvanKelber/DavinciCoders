@@ -23,9 +23,8 @@ Datasets used for this project:
 
 ### Pixel RNN (LSTM)
 Our original idea, functioning. Takes an image, trains on 90%, tests on 10% to give some idea of accuracy, then outputs an image based on test data.
-Requires Tensorflow, PIL, Numpy.
-
-To run:
+Requires Tensorflow, PIL, Numpy.  
+Run:  
 python main.py <image-to-train> 
 
 ### Modified DRAW
