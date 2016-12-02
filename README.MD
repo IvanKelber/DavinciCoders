@@ -1,5 +1,5 @@
 # Da Vinci Coders
-## Imitating Artistic Styles with Generative Networks
+### Imitating Artistic Styles with Generative Networks
 
 Josh Cusano  
 Ivan Kelber  
