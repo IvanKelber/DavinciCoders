@@ -20,13 +20,6 @@ Datasets used for this project:
 [CIFAR](https://www.cs.toronto.edu/~kriz/cifar.html)  
 [Image Net](www.image-net.org/)  
 
-Specific Data Information:
-
-In each folder for type of art there are the various artists.  In each artist there
-are the various paintings of that artist.  The only exception is "Abstract_Art"
-which has subtypes of abstract art.  To make our lives easier just take the artists
-from each subtype and move them to the main "Abstract_Art" folder.  Some artists
-are in more than one subtype so you'll need to merge their paintings.
 
 ### Pixel RNN (LSTM)
 Our original idea, functioning. Takes an image, trains on 90%, tests on 10% to give some idea of accuracy, then outputs an image based on test data.
@@ -60,3 +53,10 @@ python plot_data.py planes draw_data.npy
 If you'd like to construct generated images from several different folders containing numpy binaries:
 python plotter.py /path/to/directory
 
+
+Specific Data Information for using the Pandora set:  
+In each folder for type of art there are the various artists.  In each artist there
+are the various paintings of that artist.  The only exception is "Abstract_Art"
+which has subtypes of abstract art.  To make our lives easier just take the artists
+from each subtype and move them to the main "Abstract_Art" folder.  Some artists
+are in more than one subtype so you'll need to merge their paintings.
