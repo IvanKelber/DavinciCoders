@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import sys
 from process_image import ProcessedImage, StringsToBatches, StringsToImage
-from basic_net import LSTMNet, RunNet
+from lstm_net import LSTMNet, RunNet
 
 def RunAll():
 	"""Run python main.py <name of image>"""
