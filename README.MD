@@ -7,7 +7,7 @@ Shreyas Sundararaman
 Jeremy Watson  
 Ashley Conard  
 
-Idea:
+Motivation  
 There are several applications of deep learning to stylize a particular image.  Usually, the user provides an image, selects the style, and then their image is recreated according to that style.  Our goal is slightly different: given paintings of a particular style as teaching set, generate an original painting of a similar style.  For example, if we train on a dataset of impressionist paintings, our net would generate a painting that would pass as an original impressionist painting.
 
 Relevant Papers:  
@@ -29,7 +29,7 @@ from each subtype and move them to the main "Abstract_Art" folder.  Some artists
 are in more than one subtype so you'll need to merge their paintings.
 
 ### Pixel RNN (LSTM)
-Takes an image, trains on 90%, tests on 10%, outputs an image based on test data.
+Our original idea, functioning. Takes an image, trains on 90%, tests on 10% to give some idea of accuracy, then outputs an image based on test data.
 Requires Tensorflow, PIL, Numpy.
 
 To run:
@@ -37,15 +37,15 @@ python main.py <image-to-train>
 
 ### Modified DRAW
 
-The author of this code is Eric Jang, https://github.com/ericjang/draw. We have made minor tweaks to work with our images.
+The author of this code is Eric Jang, https://github.com/ericjang/draw. We primarily tweaked parameters and added the ability to run on any given set of images, rather than just MNIST or CIFAR.
 
-Setup:
-kinit
-ssh cslab6a (or cslab6b or cslab6c)
+Setup to use with GPU enabled sunlab machines:  
+kinit  
+ssh cslab6a (or cslab6b or cslab6c)  
 source /course/cs2950k/tf_gpu_venv/bin/activate 
 
-Run:
-If you'd like to try a particular configuration of parameters or a particular dataset you can run
+Run:  
+If you'd like to try a particular configuration of parameters or a particular dataset you can run the following command:  
 python draw.py --data_dir=./tmp/ --source_dir=./path/to/source/ --read_attn=True --write_attn=True --img_dim=64 --batch_size=100 --iters=1000 --canvasses=10
 
 If you'd like to run several different combinations of parameters on a JUST expressionism then:
