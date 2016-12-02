@@ -9,7 +9,8 @@ class LSTMNet():
 	b1 = None
 
 	def __init__(self, net_name, vocab_size, k_prob, e_size, hsize, num_steps, batch_size, epochs=None):
-		self.k_prob = k_prob
+	    #setup all class variables
+    	self.k_prob = k_prob
 		self.e_size = e_size
 		self.hsize = hsize
 		self.num_steps = num_steps
