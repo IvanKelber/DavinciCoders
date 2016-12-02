@@ -7,10 +7,10 @@ Shreyas Sundararaman
 Jeremy Watson  
 Ashley Conard  
 
-Motivation  
+##### Motivation  
 There are several applications of deep learning to stylize a particular image.  Usually, the user provides an image, selects the style, and then their image is recreated according to that style.  Our goal is slightly different: given paintings of a particular style as teaching set, generate an original painting of a similar style.  For example, if we train on a dataset of impressionist paintings, our net would generate a painting that would pass as an original impressionist painting.
 
-Relevant Papers:  
+#### Relevant Papers:  
 [Pixel Recurrent Neural Networks](https://arxiv.org/pdf/1601.06759v3)  
 [DeepDream](https://arxiv.org/pdf/1409.4842v1.pdf)  
 [DRAW](https://arxiv.org/pdf/1502.04623v2.pdf)  
