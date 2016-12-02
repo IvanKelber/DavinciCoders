@@ -1,21 +1,24 @@
-Members:
-Josh Cusano
-Ivan Kelber
-Shreyas Sundararaman
-Jeremy Watson
-Ashley Conard
+# Da Vinci Coders
+## Imitating Artistic Styles with Generative Networks
+
+Josh Cusano  
+Ivan Kelber  
+Shreyas Sundararaman  
+Jeremy Watson  
+Ashley Conard  
 
 Idea:
-There are several applications of deep learning to stylize a particular image.  Usually, the user provides an image, selects the style, and then their image is recreated according to that style.  Our goal is slightly different: given paintings of a particular style as input, generate an original painting of a similar style.  For example, if we train on a dataset of impressionist paintings, our net would generate a painting that would pass as an original impressionist painting.
+There are several applications of deep learning to stylize a particular image.  Usually, the user provides an image, selects the style, and then their image is recreated according to that style.  Our goal is slightly different: given paintings of a particular style as teaching set, generate an original painting of a similar style.  For example, if we train on a dataset of impressionist paintings, our net would generate a painting that would pass as an original impressionist painting.
 
-Relevant Papers:
+Relevant Papers:  
+[Pixel Recurrent Neural Networks](https://arxiv.org/pdf/1601.06759v3)  
+[DeepDream](https://arxiv.org/pdf/1409.4842v1.pdf)  
+[DRAW](https://arxiv.org/pdf/1502.04623v2.pdf)  
 
-DeepDream
-DRAW
-Pixel Recurrent Neural Networks - https://arxiv.org/pdf/1601.06759v3
-
-Dataset:
-http://imag.pub.ro/pandora/pandora_download.html
+Datasets used for this project:  
+[Pandora](http://imag.pub.ro/pandora/pandora_download.html)  
+[CIFAR](https://www.cs.toronto.edu/~kriz/cifar.html)  
+[Image Net](www.image-net.org/)  
 
 Specific Data Information:
 
@@ -25,19 +28,15 @@ which has subtypes of abstract art.  To make our lives easier just take the arti
 from each subtype and move them to the main "Abstract_Art" folder.  Some artists
 are in more than one subtype so you'll need to merge their paintings.
 
-###DEPRECATED#####
-Basic LSTM:
+### Pixel RNN (LSTM)
 Takes an image, trains on 90%, tests on 10%, outputs an image based on test data.
-Dependencies: (needs to be formalized)
-Tensorflow
-PIL
-Numpy
-Sys
+Requires Tensorflow, PIL, Numpy.
+
 To run:
 python main.py <image-to-train> 
 
-####CURRENT-BUILD#####
-draw:
+### Modified DRAW
+
 The author of this code is Eric Jang, https://github.com/ericjang/draw. We have made minor tweaks to work with our images.
 
 Setup:
