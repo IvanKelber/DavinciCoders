@@ -15,7 +15,7 @@ There are several applications of deep learning to stylize a particular image.  
 [DeepDream](https://arxiv.org/pdf/1409.4842v1.pdf)  
 [DRAW](https://arxiv.org/pdf/1502.04623v2.pdf)  
 
-Datasets used for this project:  
+### Datasets used for this project:  
 [Pandora](http://imag.pub.ro/pandora/pandora_download.html)  
 [CIFAR](https://www.cs.toronto.edu/~kriz/cifar.html)  
 [Image Net](www.image-net.org/)  
