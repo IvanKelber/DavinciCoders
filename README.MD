@@ -21,7 +21,7 @@ Datasets used for this project:
 [Image Net](www.image-net.org/)  
 
 
-### Pixel RNN (LSTM)
+### LSTM
 Our original idea, functioning. Takes an image, trains on 90%, tests on 10% to give some idea of accuracy, then outputs an image based on test data.
 Requires Tensorflow, PIL, Numpy.  
 Run:  
