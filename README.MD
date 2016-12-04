@@ -29,7 +29,7 @@ python main.py <image-to-train>
 
 ### Modified DRAW
 
-The author of this code is Eric Jang, https://github.com/ericjang/draw. Originally only worked on MNIST and CIFAR, we added the ability to take arbitrary images, some quality of life improvements, and modified the net slightly to improve performance for our more complex images. 
+The author of this code is Eric Jang, https://github.com/ericjang/draw. Originally only worked on MNIST, we added the ability to take images from CIFAR as well arbitrary images, some quality of life improvements, and changed the net to improve performance for our more complex images. 
 
 Setup to use with GPU enabled sunlab machines:  
 kinit  
